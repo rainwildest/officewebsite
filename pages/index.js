@@ -1,203 +1,144 @@
+import React from 'react'
 import Head from 'next/head'
+import { withTheme } from 'emotion-theming'
+import {
+  Text,
+  Box,
+  Image,
+  Stack,
+  Button,
+  Icon,
+  useColorMode,
+  Flex,
+  IconButton,
+  Heading,
+  Link
+} from '@chakra-ui/core'
+
+import '../scss/index.scss'
+import HomeBar from '../components/home-bar.js'
+import HomeImage from '../components/home-image'
+import HomeAboutUs from '../components/home-about-us'
+import HomeProjects from '../components/home-projects'
+import HomeAndMore from '../components/home-and-more'
+import HomePartner from '../components/home-partners'
+
+// const fontSize = () => {
+//   var docEl = document.documentElement
+//   var dpr = window.devicePixelRatio || 1
+
+//   // adjust body font size
+//   function setBodyFontSize () {
+//     if (document.body) {
+//       document.body.style.fontSize = (7 * dpr) + 'px'
+//     } else {
+//       document.addEventListener('DOMContentLoaded', setBodyFontSize)
+//     }
+//   }
+//   setBodyFontSize()
+
+//   // set 1rem = viewWidth / 10
+//   function setRemUnit () {
+//     var rem = docEl.clientWidth / 10
+//     docEl.style.fontSize = rem + 'px'
+//   }
+
+//   setRemUnit()
+
+//   // reset rem unit on page resize
+//   window.addEventListener('resize', setRemUnit)
+//   window.addEventListener('pageshow', function (e) {
+//     if (e.persisted) {
+//       setRemUnit()
+//     }
+//   })
+// }
+const Container = props => {
+  return (<Box width='full' mx='auto' px={6} {...props} />)
+}
+
+const Header = props => {
+  // const { colorMode, toggleColorMode } = useColorMode()
+  // const bg = { light: 'white', dark: 'gray.800' }
+  return (
+    <Box
+      pos='fixed'
+      as='header'
+      top='0'
+      zIndex='4'
+      // bg={bg[colorMode]}
+      left='0'
+      right='0'
+      borderBottomWidth='1px'
+      width='full'
+      height='4rem'
+      bg='white'
+
+      {...props}
+    >
+      <Container h='100%'>
+        <Flex
+          size='100%'
+          // px={}
+          align='center'
+          justify='space-between'
+        >
+          <Box
+            as='a'
+            d='block'
+            href='/'
+            fontWeight='bold'
+            fontSize='20px'
+            aria-label='Chakra UI, Back to homepage'
+          >
+            地域電腦有限公司
+          </Box>
+        </Flex>
+      </Container>
+    </Box>
+  )
+}
 
 const Home = () => (
-  <div className="container">
+  <div>
     <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
+      <title>地域電腦有限公司</title>
     </Head>
 
-    <main>
-      <h1 className="title">
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
+    <Box mb={20}>
+      <Header />
+      <Box as='section' pt={40} pb={24}>
+        <Container>
+          <Box mx='auto' textAlign='center'>
 
-      <p className="description">
-        Get started by editing <code>pages/index.js</code>
-      </p>
+            <Box as='h1' fontSize={(40 / 16) + 'rem'} fontWeight='semibold'>
+              關於我們
+            </Box>
 
-      <div className="grid">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+            <Text opacity='0.7' mt='6'>
+              電子互動產品、軟件及系統開發
+            </Text>
 
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
+            <Text opacity='0.7' mt='6'>
+              我們是一間資訊科技公司，致力研發新穎的電子互動裝置與物聯網相關設備，專注開發各項軟件、系統和產品，曾與不同的學校、公司及政府部門合作，因此具有豐富的經驗，歡迎有意合作者與我們洽談。
+            </Text>
+          </Box>
+        </Container>
+      </Box>
 
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
+      <Box>
+        {/* <Box p={6} background={{ base: 'red', sm: 'blue', md: 'black' }} /> */}
 
-        <a
-          href="https://zeit.co/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          className="card"
-        >
-          <h3>Deploy &rarr;</h3>
-          <p>
-            Instantly deploy your Next.js site to a public URL with ZEIT Now.
-          </p>
-        </a>
-      </div>
-    </main>
+        <HomeProjects />
+      </Box>
+    </Box>
 
-    <footer>
-      <a
-        href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
-      </a>
-    </footer>
-
-    <style jsx>{`
-      .container {
-        min-height: 100vh;
-        padding: 0 0.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      main {
-        padding: 5rem 0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      footer {
-        width: 100%;
-        height: 100px;
-        border-top: 1px solid #eaeaea;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      footer img {
-        margin-left: 0.5rem;
-      }
-
-      footer a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .title a {
-        color: #0070f3;
-        text-decoration: none;
-      }
-
-      .title a:hover,
-      .title a:focus,
-      .title a:active {
-        text-decoration: underline;
-      }
-
-      .title {
-        margin: 0;
-        line-height: 1.15;
-        font-size: 4rem;
-      }
-
-      .title,
-      .description {
-        text-align: center;
-      }
-
-      .description {
-        line-height: 1.5;
-        font-size: 1.5rem;
-      }
-
-      code {
-        background: #fafafa;
-        border-radius: 5px;
-        padding: 0.75rem;
-        font-size: 1.1rem;
-        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-      }
-
-      .grid {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-
-        max-width: 800px;
-        margin-top: 3rem;
-      }
-
-      .card {
-        margin: 1rem;
-        flex-basis: 45%;
-        padding: 1.5rem;
-        text-align: left;
-        color: inherit;
-        text-decoration: none;
-        border: 1px solid #eaeaea;
-        border-radius: 10px;
-        transition: color 0.15s ease, border-color 0.15s ease;
-      }
-
-      .card:hover,
-      .card:focus,
-      .card:active {
-        color: #0070f3;
-        border-color: #0070f3;
-      }
-
-      .card h3 {
-        margin: 0 0 1rem 0;
-        font-size: 1.5rem;
-      }
-
-      .card p {
-        margin: 0;
-        font-size: 1.25rem;
-        line-height: 1.5;
-      }
-
-      @media (max-width: 600px) {
-        .grid {
-          width: 100%;
-          flex-direction: column;
-        }
-      }
-    `}</style>
-
-    <style jsx global>{`
-      html,
-      body {
-        padding: 0;
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-    `}</style>
+    {/* <HomeImage />
+    <HomeAboutUs />
+    <HomeProjects />
+    <HomeAndMore />
+    <HomePartner /> */}
   </div>
 )
 
-export default Home
+export default withTheme(Home)
